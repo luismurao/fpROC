@@ -1,0 +1,79 @@
+[
+    {
+        "file": "/home/luis/Dropbox/fpROC/src/trapezoid_rule.cpp",
+        "file_last_write": 1746662638.0,
+        "definitions": [
+            {
+                "usr": "c:@F@trap_roc#&1$@N@arma@S@Col>#d#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "trap_roc(const arma::vec &, const arma::vec &)",
+                "file": "/home/luis/Dropbox/fpROC/src/trapezoid_rule.cpp",
+                "line": 44,
+                "column": 15,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@bigclass_mat_opt#&1$@N@arma@S@Col>#d#S0_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "bigclass_mat_opt(const arma::vec &, const arma::vec &)",
+                "file": "/home/luis/Dropbox/fpROC/src/trapezoid_rule.cpp",
+                "line": 56,
+                "column": 12,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@calc_aucDF_arma_opt#&1$@N@arma@S@Mat>#d#&1$@N@arma@S@Col>#d#S2_#I#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "calc_aucDF_arma_opt(const arma::mat &, const arma::vec &, const arma::vec &, int, double)",
+                "file": "/home/luis/Dropbox/fpROC/src/trapezoid_rule.cpp",
+                "line": 120,
+                "column": 12,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@iterate_aucDF_arma_opt#&1$@N@arma@S@Mat>#d#&1$@N@arma@S@Col>#d#S2_#I#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "iterate_aucDF_arma_opt(const arma::mat &, const arma::vec &, const arma::vec &, int, double, int)",
+                "file": "/home/luis/Dropbox/fpROC/src/trapezoid_rule.cpp",
+                "line": 167,
+                "column": 12,
+                "hidden": false
+            },
+            {
+                "usr": "c:@F@auc_par_arma_opt#&1$@N@arma@S@Col>#d#S0_#d#d#I#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "auc_par_arma_opt(const arma::vec &, const arma::vec &, double, double, int)",
+                "file": "/home/luis/Dropbox/fpROC/src/trapezoid_rule.cpp",
+                "line": 245,
+                "column": 12,
+                "hidden": false
+            },
+            {
+                "usr": "c:@S@HistogramWorker",
+                "kind": 3,
+                "parent_name": "",
+                "name": "HistogramWorker",
+                "file": "/home/luis/Dropbox/fpROC/src/trapezoid_rule.cpp",
+                "line": 327,
+                "column": 9,
+                "hidden": false
+            },
+            {
+                "usr": "c:@S@HistogramWorker@F@operator()#l#l#",
+                "kind": 7,
+                "parent_name": "HistogramWorker",
+                "name": "operator(std::size_t, std::size_t)",
+                "file": "/home/luis/Dropbox/fpROC/src/trapezoid_rule.cpp",
+                "line": 334,
+                "column": 9,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    }
+]

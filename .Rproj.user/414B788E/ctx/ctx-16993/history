@@ -1,0 +1,10 @@
+RcppArmadillo::RcppArmadillo.package.skeleton(name = "fpROC", list = character(),
+environment = .GlobalEnv, path = ".", force = FALSE,
+code_files = character(), example_code = TRUE)
+devtools::document()
+devtools::document()
+devtools::install()
+devtools::build()
+devtools::document()
+devtools::install()
+devtools::document()

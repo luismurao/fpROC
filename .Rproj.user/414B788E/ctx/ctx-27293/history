@@ -1,0 +1,147 @@
+RcppArmadillo::RcppArmadillo.package.skeleton(name = "fpROC", list = character(),
+environment = .GlobalEnv, path = ".", force = FALSE,
+code_files = character(), example_code = TRUE)
+devtools::document()
+devtools::document()
+devtools::install()
+devtools::build()
+devtools::document()
+//' @title Calculate area under curve (AUC) using trapezoidal rule
+//' @title Calculate area under curve (AUC) using trapezoidal rule
+test <- rnorm(100)
+train <- rnorm(1000)
+bigclass_mat_opt(test, train)
+install.packages("RcppParallel")
+devtools::install()
+devtools::install()
+devtools::install(build_opts = c("--verbose"))
+devtools::install()
+# In R:
+remove.packages("fpROC")
+devtools::clean_dll()
+devtools::install(dependencies = TRUE, build_vignettes = FALSE)
+install.packages("RcppParallel", type = "source")
+# In R:
+devtools::clean_dll()
+devtools::install(build_opts = c("--clean"))
+# In R:
+devtools::clean_dll()
+devtools::install(pkg = ".",build_opts = c("--clean"))
+Sys.setenv(RCPP_PARALLEL_USE_TBB=1)
+RcppParallel::defaultNumThreads()
+#' Calculate Partial Area Under the Curve (AUC) Metrics
+#'
+#' Computes partial AUC ratios between model predictions and random curves at a specified threshold,
+#' with options for sampling and iterations. Handles both numeric vectors and SpatRaster inputs.
+#'
+#' @param test_prediction Numeric vector of test prediction values (e.g., model outputs)
+#' @param prediction Numeric vector or SpatRaster object containing prediction values
+#' @param threshold Percentage threshold for partial AUC calculation (default = 5)
+#' @param sample_percentage Percentage of test data to sample (default = 50)
+#' @param iterations Number of iterations for random curve generation (default = 500)
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item If input has no variability: List with NA values for AUC metrics
+#'   \item Otherwise: Matrix of AUC results from \code{auc_par_arma_opt}
+#' }
+#'
+#' @details
+#' The function calculates partial AUC ratios by:
+#' \enumerate{
+#'   \item Validating input types and completeness
+#'   \item Handling NA values and SpatRaster conversion
+#'   \item Checking for prediction variability
+#'   \item Computing AUC metrics using optimized C++ code
+#' }
+#'
+#' When prediction values have no variability (all equal), the function returns NA values with a warning.
+#'
+#' @examples
+#' \dontrun{
+#' # With numeric vectors
+#' test_data <- rnorm(100)
+#' pred_data <- rnorm(100)
+#' result <- auc_part(test_prediction = test_data, prediction = pred_data)
+#'
+#' # With SpatRaster
+#' library(terra)
+#' r <- rast(ncol=10, nrow=10)
+#' values(r) <- rnorm(ncell(r))
+#' result <- auc_part(test_prediction = test_data, prediction = r)
+#' }
+#'
+#' @export
+#' @import RcppArmadillo
+#' @importFrom stats na.omit
+#' @importFrom RcppParallel RcppParallelLibs
+#' @seealso \code{\link{auc_par_arma_opt}} for the underlying C++ implementation
+#' @useDynLib fpROC, .registration=TRUE
+auc_part <-function (test_prediction, prediction, threshold = 5, sample_percentage = 50,
+iterations = 500) {
+if (missing(prediction)) {
+stop("Argument 'prediction' is necessary to perform the analysis.")
+}
+if (missing(test_prediction)) {
+stop("Argument 'test_prediction' is necessary to perform the analysis.")
+}
+c_pred <- class(prediction)[1]
+if (!c_pred %in% c("SpatRaster", "numeric")) {
+stop("'prediction' must be of class 'SpatRaster' or 'numeric'.")
+}
+c_tdat <- class(test_prediction)[1]
+if (c_tdat != "numeric") {
+stop("'test_prediction' must be of class 'numeric'.")
+}
+if (c_pred == "SpatRaster") {
+prediction <- prediction[][,1]
+}
+prediction <- prediction[!is.na(prediction)]
+mmx <- range(prediction)
+test_prediction <- stats::na.omit(test_prediction)
+if (mmx[1] == mmx[2]) {
+warning("\nprediction has no variability, pROC will return NA.\n")
+p_roc <- rep(NA, 2)
+names(p_roc) <- c(paste0("Mean_AUC_ratio_at_", threshold,
+"%"), "pval_pROC")
+auc_ratios <- rep(NA, 3)
+names(auc_ratios) <- c("Model_partial_AUC", "Random_curve_partial_AUC",
+"AUC_ratio")
+p_roc_res <- list(pROC_summary = p_roc, pROC_results = auc_ratios)
+}
+else {
+partial_AUC <- auc_par_arma_opt(test_prediction = test_prediction,
+prediction = prediction,
+threshold = threshold,
+sample_percentage = sample_percentage,
+iterations = iterations)
+return(partial_AUC)
+}
+return(p_roc_res)
+}
+test_data <- rnorm(100)
+pred_data <- rnorm(100)
+result <- auc_part(test_prediction = test_data, prediction = pred_data)
+result <- auc_part(test_prediction = test_data, prediction = pred_data)
+result <- auc_part(test_prediction = test_data, prediction = pred_data)
+# Clean previous builds
+devtools::clean_dll()
+# Reinstall
+devtools::install()
+# In R
+devtools::clean_dll()
+remove.packages("fpROC")
+remove.packages("fpROC")
+# With numeric vectors
+test_data <- rnorm(100)
+pred_data <- rnorm(100)
+result <- auc_part(test_prediction = test_data, prediction = pred_data)
+library(terra)
+?`fpROC-package`
+trap_roc
+trap_roc(1:10,1:10)
+trap_roc(0:10,0:10)
+?auc_par_arma_opt
+devtools::document()
+devtools::document()
+devtools::document()

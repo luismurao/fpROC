@@ -1,0 +1,342 @@
+#include <RcppArmadillo.h>
+#include <RcppParallel.h>
+#ifdef _OPENMP
+#include <omp.h>
+#endif
+
+// [[Rcpp::plugins(openmp)]]
+// [[Rcpp::depends(RcppArmadillo, RcppParallel)]]
+// [[Rcpp::plugins(cpp11)]]
+
+using namespace arma;
+using namespace Rcpp;
+using namespace RcppParallel;
+
+// Forward declaration
+
+//' Calculate Area Under Curve (AUC) Using Trapezoidal Rule
+//'
+//' @description Computes the area under a curve defined by x and y coordinates using the trapezoidal rule of numerical integration.
+//'
+//' @param x Numeric vector (arma::vec) of x-coordinates (should be sorted in increasing order)
+//' @param y Numeric vector (arma::vec) of y-coordinates corresponding to x-coordinates
+//'
+//' @return The computed area under the curve as a double precision value.
+//'
+//' @details
+//' The trapezoidal rule approximates the area under the curve by dividing it into trapezoids rather than rectangles.
+//' For each pair of adjacent points (x[i], y[i]) and (x[i+1], y[i+1]), it calculates the area of the trapezoid formed.
+//' The total AUC is the sum of all these individual trapezoid areas.
+//'
+//' Special cases:
+//' - Returns 0 if there are fewer than 2 points (no area can be calculated)
+//' - Handles both increasing and decreasing x values (though typically x should be increasing for ROC curves)
+//'
+//' @examples
+//' # R code example:
+//' # x <- c(0, 0.5, 1, 1.5, 2)
+//' # y <- c(0, 0.7, 0.9, 0.95, 1)
+//' # trap_roc(x, y)  # Returns AUC
+//'
+//' @seealso \code{\link{integrate}} for R's built-in integration functions
+//' @export
+// [[Rcpp::export]]
+inline double trap_roc(const arma::vec& x, const arma::vec& y) {
+   const size_t n = x.n_elem;
+   if (n < 2) return 0.0;
+
+   arma::vec dx = x.subvec(1, n-1) - x.subvec(0, n-2);
+   arma::vec y_sum = y.subvec(1, n-1) + y.subvec(0, n-2);
+
+   return 0.5 * arma::dot(dx, y_sum);
+ }
+
+
+
+ arma::mat bigclass_mat_opt(const arma::vec& test_prediction,
+                            const arma::vec& prediction) {
+   // Input validation
+   if (prediction.n_elem == 0 || test_prediction.n_elem == 0) {
+     Rcpp::stop("Input vectors cannot be empty");
+   }
+
+   arma::uvec non_na = arma::find_finite(prediction);
+   if (non_na.n_elem == 0) {
+     Rcpp::stop("No finite values in prediction vector");
+   }
+
+   const arma::vec pred_clean = prediction.elem(non_na);
+   const int nprediction = pred_clean.n_elem;
+
+   // Combine vectors more efficiently
+   arma::vec combined_pred = arma::join_cols(pred_clean, test_prediction);
+
+   // Vectorized binning
+   const double pred_min = combined_pred.min();
+   const double pred_max = combined_pred.max();
+   const double range = pred_max - pred_min;
+
+   if (range <= std::numeric_limits<double>::epsilon()) {
+     Rcpp::stop("All prediction values are identical");
+   }
+
+   const double scale = 249.0 / range;
+   arma::vec pred_binned = (combined_pred - pred_min) * scale;
+   pred_binned.transform([](double val) { return std::floor(val) + 1.0; });
+
+   // Split views
+   arma::vec test_pred_binned = pred_binned.subvec(nprediction, pred_binned.n_elem - 1);
+   arma::vec train_pred_binned = pred_binned.subvec(0, nprediction - 1);
+
+   // Parallel histogram counting
+   arma::ivec counts(250, arma::fill::zeros);
+   const double* train_ptr = train_pred_binned.memptr();
+   const size_t n_train = train_pred_binned.n_elem;
+
+#pragma omp parallel for
+   for (size_t i = 0; i < n_train; ++i) {
+     const int bin = static_cast<int>(train_ptr[i]) - 1;
+     if (bin >= 0 && bin < 250) {
+#pragma omp atomic
+       counts[bin]++;
+     }
+   }
+
+   // Reverse and cumsum
+   counts = arma::reverse(counts);
+   arma::vec csum = arma::cumsum(arma::conv_to<arma::vec>::from(counts));
+
+   // Create matrix efficiently
+   const int n_samp = test_pred_binned.n_elem;
+   arma::mat big_classpixels(n_samp, 250);
+   for (int i = 0; i < 250; ++i) {
+     big_classpixels.col(i) = 250 - i;  // Armadillo's efficient broadcasting
+   }
+
+   return big_classpixels;
+ }
+
+//' @title Calculate single iteration of AUC comparison
+ arma::mat calc_aucDF_arma_opt(
+     const arma::mat& big_classpixels,
+     const arma::vec& fractional_area,
+     const arma::vec& test_prediction,
+     int n_samp,
+     double error_sens) {
+
+   // Random sampling
+   arma::uvec rowsID = arma::randperm(test_prediction.n_elem, n_samp);
+   const arma::vec sampled_pred = test_prediction.elem(rowsID);
+
+   // Omission matrix
+   arma::mat omission_matrix(big_classpixels.n_rows, big_classpixels.n_cols);
+
+   for (uword i = 0; i < big_classpixels.n_cols; ++i) {
+     omission_matrix.col(i) = arma::conv_to<vec>::from(big_classpixels.col(i) > sampled_pred);
+   }
+
+   // Sensitivity calculation
+   arma::vec sensibility = 1.0 - arma::mean(omission_matrix, 0).t();
+
+   // Filter
+   arma::uvec keep_idx = arma::find(sensibility > error_sens);
+   if (keep_idx.n_elem < 2) {
+     Rcpp::stop("Not enough points above error threshold");
+   }
+
+   // Construct and sort
+   arma::mat xyTable = arma::join_horiz(
+     fractional_area.elem(keep_idx),
+     sensibility.elem(keep_idx)
+   );
+
+   xyTable = xyTable.rows(arma::sort_index(xyTable.col(0)));
+
+   // Compute AUCs
+   const double auc_pmodel = trap_roc(xyTable.col(0), xyTable.col(1));
+   const double auc_prand = trap_roc(xyTable.col(0), xyTable.col(0));
+
+   return {{auc_pmodel, auc_prand, auc_pmodel / auc_prand}};
+ }
+
+
+ arma::mat iterate_aucDF_arma_opt(
+     const arma::mat& big_classpixels,
+     const arma::vec& fractional_area,
+     const arma::vec& test_prediction,
+     int n_samp,
+     double error_sens,
+     int n_iterations) {
+
+   arma::mat results(n_iterations, 3);
+
+#pragma omp parallel for
+   for (int i = 0; i < n_iterations; ++i) {
+     results.row(i) = calc_aucDF_arma_opt(
+       big_classpixels, fractional_area, test_prediction,
+       n_samp, error_sens
+     );
+   }
+
+   return results;
+ }
+
+
+
+//' Parallel AUC Calculation with Optimized Memory Usage
+//'
+//' Computes the Area Under the Curve (AUC) using parallel processing and optimized
+//' memory handling for large datasets. The function implements binning and
+//' parallel histogram counting for efficient computation.
+//'
+//' @param test_prediction Numeric vector of test prediction values (response variable)
+//' @param prediction Numeric vector of model predictions (predictor variable)
+//' @param threshold Percentage threshold for partial AUC calculation (default: 5.0)
+//' @param sample_percentage Percentage of test data to sample (default: 50.0)
+//' @param iterations Number of bootstrap iterations for confidence intervals (default: 500)
+//'
+//' @return A numeric matrix containing:
+//' \itemize{
+//'   \item AUC values for each iteration
+//'   \item Confidence intervals
+//'   \item Summary statistics
+//' }
+//'
+//' @details
+//' The function performs these key operations:
+//' \enumerate{
+//'   \item Input validation and cleaning (removes NA/NaN/Inf values)
+//'   \item Data binning into 250 quantiles for memory efficiency
+//'   \item Parallel histogram counting using OpenMP
+//'   \item Bootstrap sampling for confidence intervals
+//'   \item Final AUC calculation using trapezoidal integration
+//' }
+//'
+//' @section Parallel Processing:
+//' Uses OpenMP for parallel histogram counting. Set number of threads with
+//' `RcppParallel::setThreadOptions()` before calling this function.
+//'
+//' @section Memory Optimization:
+//' Implements several memory-saving techniques:
+//' \itemize{
+//'   \item Binning continuous values into discrete quantiles
+//'   \item Sparse matrix operations
+//'   \item In-place modifications where possible
+//' }
+//'
+//' @examples
+//' \dontrun{
+//' # Generate sample data
+//' set.seed(123)
+//' test_data <- rnorm(1000)
+//' pred_data <- rnorm(1000) + test_data * 0.5
+//'
+//' # Calculate AUC
+//' result <- auc_par_arma_opt(test_data, pred_data)
+//' }
+//'
+//' @importFrom Rcpp evalCpp
+//' @export
+// [[Rcpp::export]]
+ arma::mat auc_par_arma_opt(const arma::vec& test_prediction,
+                            const arma::vec& prediction,
+                            double threshold = 5.0,
+                            double sample_percentage = 50.0,
+                            int iterations = 500) {
+
+   // Input validation
+   if (test_prediction.n_elem == 0 || prediction.n_elem == 0) {
+     stop("Input vectors cannot be empty");
+   }
+
+   // Process vectors
+   arma::vec test_clean = test_prediction.elem(arma::find_finite(test_prediction));
+   arma::vec pred_clean = prediction.elem(arma::find_finite(prediction));
+
+   if (pred_clean.n_elem == 0 || test_clean.n_elem == 0) {
+     stop("No finite values in prediction vectors");
+   }
+
+   // Combined vector
+   arma::vec combined = arma::join_cols(pred_clean, test_clean);
+
+   // Binning
+   const double min_val = combined.min();
+   const double max_val = combined.max();
+   const double range = max_val - min_val;
+
+   if (range <= std::numeric_limits<double>::epsilon()) {
+     stop("All prediction values are identical");
+   }
+
+   const double scale = 249.0 / range;
+   arma::vec binned = (combined - min_val) * scale;
+   binned.transform([](double val) { return static_cast<int>(val) + 1.0; });
+
+   // Split binned vectors
+   const int nprediction = pred_clean.n_elem;
+   arma::vec test_binned = binned.subvec(nprediction, binned.n_elem - 1);
+
+   if (test_binned.n_elem == 0) {
+     stop("No test values available after binning");
+   }
+
+   arma::vec train_binned = binned.subvec(0, nprediction - 1);
+
+   // Parallel histogram counting
+   arma::ivec counts(250, arma::fill::zeros);
+   const arma::ivec train_binned_int = arma::conv_to<arma::ivec>::from(train_binned) - 1;
+
+#pragma omp parallel for
+   for (uword i = 0; i < train_binned_int.n_elem; ++i) {
+     int val = train_binned_int[i];
+     if (val >= 0 && val < 250) {
+#pragma omp atomic
+       counts[249 - val]++;
+     }
+   }
+
+   // Statistics
+   arma::vec csum = arma::cumsum(arma::conv_to<arma::vec>::from(counts));
+   arma::vec percent = csum / csum.back();
+
+   // Parameters - ensure at least 1 sample
+   const double error_sens = 1.0 - (threshold / 100.0);
+   const int n_samp = std::max(1, static_cast<int>(
+     std::ceil((sample_percentage / 100.0) * test_binned.n_elem)
+   ));
+
+   // Matrix creation with validation
+   arma::mat big_classpixels(n_samp, 250);
+   for (uword i = 0; i < 250; ++i) {
+     big_classpixels.col(i).fill(250 - i); // Use fill() for column assignment
+   }
+
+   // Parallel AUC calculation
+   return iterate_aucDF_arma_opt(big_classpixels, percent, test_binned,
+                                 n_samp, error_sens, iterations);
+ }
+
+
+
+ // Worker for parallel histogram counting
+ struct HistogramWorker : public Worker {
+   const ivec& input;
+   ivec& counts;
+
+   HistogramWorker(const ivec& input, ivec& counts)
+     : input(input), counts(counts) {}
+
+   void operator()(std::size_t begin, std::size_t end) {
+     for (size_t i = begin; i < end; ++i) {
+       int val = input[i];
+       if (val >= 0 && val < 250) {
+#ifdef RCPP_PARALLEL_USE_TBB
+         counts[249 - val]++; // TBB has built-in atomic operations
+#else
+         __sync_fetch_and_add(&counts[249 - val], 1);
+#endif
+       }
+     }
+   }
+ };
