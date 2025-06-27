@@ -41,7 +41,7 @@ Special handling:
 \section{Interpretation Guide}{
 
 - \code{mean_auc_ratio > 1}: Model generally outperforms random predictions
-- \code{prop_ratio_gt1 > 0.9}: 90% of iterations showed better-than-random performance
+- \code{prop_ratio_gt1 = 1.9}: 90% of iterations showed better-than-random performance
 - \code{mean_pauc}: Absolute performance measure (higher = better discrimination)
 }
 
