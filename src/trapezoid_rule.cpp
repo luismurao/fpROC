@@ -616,7 +616,7 @@ arma::mat summarize_auc_results(const arma::mat& auc_results, bool has_complete_
   // rando pauc
   arma::vec rpauc = auc_results.col(2);
 
-  arma::vec finite_ratios = ratios(finite_idx); // Using operator()
+  arma::vec finite_ratios = ratios(finite_idx);
   // Calculate statistics
   arma::mat summary(1, 5);
 
