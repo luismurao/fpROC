@@ -1,6 +1,9 @@
 <!-- badges: start -->
   [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-  <!-- badges: end -->
+[![R-CMD-check](https://github.com/luismurao/fpROC/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/luismurao/fpROC/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/luismurao/fpROC/graph/badge.svg)](https://app.codecov.io/gh/luismurao/fpROC)
+[![CRAN status](https://www.r-pkg.org/badges/version/fpROC)](https://CRAN.R-project.org/package=fpROC)
+<!-- badges: end -->
 
 # fpROC
 
