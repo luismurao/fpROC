@@ -49,3 +49,28 @@ testthat::test_that("AUC computation",{
 
 
 })
+
+testthat::test_that("No variability in model preds",{
+  set.seed(123)
+  train_pred <- runif(100)   # Training predictions
+  test_pred <- train_pred     # Test predictions
+
+
+  testthat::expect_error(fpROC::auc_metrics(
+                                 threshold = 5.0,
+                                 iterations = 100))  # Reduced for example
+  testthat::expect_error(fpROC::auc_metrics(test_prediction = "1",
+                                             prediction = train_pred,
+                                             threshold = 5.0,
+                                             iterations = 100))  #
+  testthat::expect_error(fpROC::auc_metrics(test_prediction = 1,
+                                             prediction = "1",
+                                             threshold = 5.0,
+                                             iterations = 100))  #
+
+  testthat::expect_error(fpROC::auc_metrics(test_prediction = 1,
+                                            prediction = rep(1,10),
+                                            threshold = 5.0,
+                                            iterations = 100))  #
+
+})
