@@ -68,7 +68,7 @@ testthat::test_that("No variability in model preds",{
                                              threshold = 5.0,
                                              iterations = 100))  #
 
-  testthat::expect_error(fpROC::auc_metrics(test_prediction = 1,
+  testthat::expect_warning(fpROC::auc_metrics(test_prediction = 1,
                                             prediction = rep(1,10),
                                             threshold = 5.0,
                                             iterations = 100))  #
