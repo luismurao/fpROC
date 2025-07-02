@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-The package features optimized C++ code for computing partial ROC. Parallelization using OpenMP (OMP) was achieved with assistance from the DeepSeek AI Assistant (https://www.deepseek.com/).
+The package features optimized C++ code for computing partial ROC. Parallelization using OpenMP (OMP) was achieved with assistance from the DeepSeek AI Assistant (https://deepseek.com).
 }
 \author{
 \strong{Maintainer}: Luis Osorio-Olvera \email{luismurao@gmail.com} (\href{https://orcid.org/0000-0003-0701-5398}{ORCID})

@@ -1,11 +1,10 @@
 <!-- badges: start -->
-  [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![R-CMD-check](https://github.com/luismurao/fpROC/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/luismurao/fpROC/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/luismurao/fpROC/graph/badge.svg)](https://app.codecov.io/gh/luismurao/fpROC)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![codecov](https://codecov.io/gh/luismurao/fpROC/graph/badge.svg?token=22EZE5M06M)](https://codecov.io/gh/luismurao/fpROC)
 [![CRAN status](https://www.r-pkg.org/badges/version/fpROC)](https://CRAN.R-project.org/package=fpROC)
 <!-- badges: end -->
 
-# fpROC
+# fpROC <a href="https://luismurao.github.io/fpROC/"><img src="man/figures/logo.png" align="right" height="139" /></a>
 
 The package features optimized C++ code for computing partial ROC. Parallelization using OpenMP (OMP) was achieved with assistance from the DeepSeek AI Assistant (https://deepseek.com).
 
