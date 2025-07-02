@@ -10,6 +10,14 @@
 
 The package features optimized C++ code for computing partial ROC. Parallelization using OpenMP (OMP) was achieved with assistance from the DeepSeek AI Assistant (https://deepseek.com).
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://luismurao.github.io/fpROC/}
+  \item Report bugs at \url{https://github.com/luismurao/fpROC/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Luis Osorio-Olvera \email{luismurao@gmail.com} (\href{https://orcid.org/0000-0003-0701-5398}{ORCID})
 

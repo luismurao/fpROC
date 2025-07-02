@@ -24,6 +24,8 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 SystemRequirements: GNU make, OpenMP, TBB
+URL: https://luismurao.github.io/fpROC/
+BugReports: https://github.com/luismurao/fpROC/issues
 Imports: 
     Rcpp (>= 1.0.7),
     stats,
