@@ -6,6 +6,8 @@
 \alias{fpROC-package}
 \title{fpROC: Fast partial ROC test}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 The package features optimized C++ code for computing partial ROC. Parallelization using OpenMP (OMP) was achieved with assistance from the DeepSeek AI Assistant (https://www.deepseek.com/).
 }
 \author{
