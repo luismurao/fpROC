@@ -18,6 +18,7 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/luismurao/fpROC/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -26,7 +27,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Parallel AUC Calculation with Optimized Memory Usage</h1>
-
+      <small class="dont-index">Source: <a href="https://github.com/luismurao/fpROC/blob/main/R/RcppExports.R" class="external-link"><code>R/RcppExports.R</code></a></small>
       <div class="d-none name"><code>auc_parallel.Rd</code></div>
     </div>
 
@@ -129,11 +130,11 @@ Sensitivity &gt; 1 - (threshold/100)</p>
 <span class="r-in"><span><span class="co"># View first 5 iterations</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">results</span>, <span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]     [,2]      [,3]      [,4]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.492014 0.056270 0.0563180 0.9991477</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.506256 0.059506 0.0591395 1.0061972</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.485528 0.063304 0.0628875 1.0066229</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.496050 0.051748 0.0515955 1.0029557</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.481444 0.043888 0.0439875 0.9977380</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.503866 0.033296 0.0334220 0.9962300</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.502480 0.039012 0.0392000 0.9952041</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.499748 0.063390 0.0628875 1.0079905</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.503036 0.056484 0.0563180 1.0029475</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.484342 0.059594 0.0591395 1.0076852</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Summarize results (assume complete AUC was not computed)</span></span></span>
 <span class="r-in"><span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="summarize_auc_results.html">summarize_auc_results</a></span><span class="op">(</span><span class="va">results</span>, has_complete_auc <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
