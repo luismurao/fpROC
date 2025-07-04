@@ -17,6 +17,8 @@
 #' }
 #'
 #' @details
+#' Partial ROC is calculated following Peterson et al.
+#' (2008; \url{http://dx.doi.org/10.1016/j.ecolmodel.2007.11.008}).
 #' The function calculates partial AUC ratios by:
 #' \enumerate{
 #'   \item Validating input types and completeness
@@ -26,7 +28,7 @@
 #' }
 #'
 #' When prediction values have no variability (all equal), the function returns NA values with a warning.
-#'
+#' @references Peterson, A.T. et al. (2008) Rethinking receiver operating characteristic analysis applications in ecological niche modeling. Ecol. Modell., 213, 63–72.
 #' @examples
 #' # With numeric vectors
 #' test_data <- rnorm(100)
