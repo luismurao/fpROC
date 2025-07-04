@@ -16,8 +16,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Fast partial ROC test">
-<meta name="description" content="The package features optimized C++ code for computing partial ROC. Parallelization using OpenMP (OMP) was achieved with assistance from the DeepSeek AI Assistant (https://deepseek.com).">
-<meta property="og:description" content="The package features optimized C++ code for computing partial ROC. Parallelization using OpenMP (OMP) was achieved with assistance from the DeepSeek AI Assistant (https://deepseek.com).">
+<meta name="description" content="The package features optimized C++ code for computing partial ROC. Partial ROC is calculated following Peterson et al. (2008) &lt;doi:10.1016/j.ecolmodel.2007.11.008&gt;. Parallelization using OpenMP (OMP) was achieved with assistance from the DeepSeek AI Assistant (https://www.deepseek.com/).">
+<meta property="og:description" content="The package features optimized C++ code for computing partial ROC. Partial ROC is calculated following Peterson et al. (2008) &lt;doi:10.1016/j.ecolmodel.2007.11.008&gt;. Parallelization using OpenMP (OMP) was achieved with assistance from the DeepSeek AI Assistant (https://www.deepseek.com/).">
 <meta property="og:image" content="/logo.png">
 </head>
 <body>
@@ -59,22 +59,32 @@
 </h1>
 </div>
 <p>The package features optimized C++ code for computing partial ROC. Parallelization using OpenMP (OMP) was achieved with assistance from the DeepSeek AI Assistant (<a href="https://deepseek.com" class="external-link uri">https://deepseek.com</a>).</p>
+<p>The goal of fpROC is to …</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the development version of fpROC from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"luismurao/fpROC"</span><span class="op">)</span></span></code></pre></div>
+</div>
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
 <p>The package can work with numerical vectors and <code>terra</code> SpatRaster objects.</p>
 <p>An example using numerical data</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">999</span><span class="op">)</span></span>
 <span><span class="co"># With numeric vectors</span></span>
 <span><span class="va">test_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span>
 <span><span class="va">pred_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span>
 <span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">fpROC</span><span class="fu">::</span><span class="fu"><a href="reference/auc_metrics.html">auc_metrics</a></span><span class="op">(</span>test_prediction <span class="op">=</span> <span class="va">test_data</span>, prediction <span class="op">=</span> <span class="va">pred_data</span><span class="op">)</span></span></code></pre></div>
 <p>An example using <code>terra</code> SpatRaster objects.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">999</span><span class="op">)</span></span>
 <span><span class="co"># With SpatRaster</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/" class="external-link">terra</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; terra 1.8.54</span></span>
 <span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span>ncol<span class="op">=</span><span class="fl">10</span>, nrow<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">ncell</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">fpROC</span><span class="fu">::</span><span class="fu"><a href="reference/auc_metrics.html">auc_metrics</a></span><span class="op">(</span>test_prediction <span class="op">=</span> <span class="va">test_data</span>, prediction <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span></code></pre></div>
@@ -123,7 +133,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
-<li><a href="https://codecov.io/gh/luismurao/fpROC" class="external-link"><img src="https://codecov.io/gh/luismurao/fpROC/graph/badge.svg?token=22EZE5M06M" alt="codecov"></a></li>
+<li><a href="https://app.codecov.io/gh/luismurao/fpROC" class="external-link"><img src="https://codecov.io/gh/luismurao/fpROC/graph/badge.svg?token=22EZE5M06M" alt="codecov"></a></li>
 <li><a href="https://CRAN.R-project.org/package=fpROC" class="external-link"><img src="https://www.r-pkg.org/badges/version/fpROC" alt="CRAN status"></a></li>
 </ul>
 </div>

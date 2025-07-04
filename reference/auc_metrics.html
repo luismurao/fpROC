@@ -85,11 +85,17 @@ with options for sampling and iterations. Handles both numeric vectors and SpatR
 </ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The function calculates partial AUC ratios by:</p><ol><li><p>Validating input types and completeness</p></li>
+    <p>Partial ROC is calculated following Peterson et al.
+(2008; <a href="http://dx.doi.org/10.1016/j.ecolmodel.2007.11.008" class="external-link">http://dx.doi.org/10.1016/j.ecolmodel.2007.11.008</a>).
+The function calculates partial AUC ratios by:</p><ol><li><p>Validating input types and completeness</p></li>
 <li><p>Handling NA values and SpatRaster conversion</p></li>
 <li><p>Checking for prediction variability</p></li>
 <li><p>Computing AUC metrics using optimized C++ code</p></li>
 </ol><p>When prediction values have no variability (all equal), the function returns NA values with a warning.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    <p>Peterson, A.T. et al. (2008) Rethinking receiver operating characteristic analysis applications in ecological niche modeling. Ecol. Modell., 213, 63–72.</p>
     </div>
 
     <div class="section level2">
