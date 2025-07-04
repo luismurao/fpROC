@@ -1,21 +1,41 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 <!-- badges: start -->
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![codecov](https://codecov.io/gh/luismurao/fpROC/graph/badge.svg?token=22EZE5M06M)](https://app.codecov.io/gh/luismurao/fpROC)
-[![CRAN status](https://www.r-pkg.org/badges/version/fpROC)](https://CRAN.R-project.org/package=fpROC)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/fpROC)](https://CRAN.R-project.org/package=fpROC)
 <!-- badges: end -->
 
 # fpROC <a href="https://luismurao.github.io/fpROC/"><img src="man/figures/logo.png" align="right" height="139" /></a>
 
-The package features optimized C++ code for computing partial ROC. Parallelization using OpenMP (OMP) was achieved with assistance from the DeepSeek AI Assistant (https://deepseek.com).
+The package features optimized C++ code for computing partial ROC.
+Parallelization using OpenMP (OMP) was achieved with assistance from the
+DeepSeek AI Assistant (<https://deepseek.com>).
+
+The goal of fpROC is to …
+
+## Installation
+
+You can install the development version of fpROC from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("luismurao/fpROC")
+```
 
 ## Examples
 
-The package can work with numerical vectors and `terra` SpatRaster objects.
-
+The package can work with numerical vectors and `terra` SpatRaster
+objects.
 
 An example using numerical data
 
-```R
+``` r
 set.seed(999)
 # With numeric vectors
 test_data <- rnorm(100)
@@ -25,10 +45,11 @@ result <- fpROC::auc_metrics(test_prediction = test_data, prediction = pred_data
 
 An example using `terra` SpatRaster objects.
 
-```R
+``` r
 set.seed(999)
 # With SpatRaster
 library(terra)
+#> terra 1.8.54
 r <- terra::rast(ncol=10, nrow=10)
 values(r) <- rnorm(ncell(r))
 result <- fpROC::auc_metrics(test_prediction = test_data, prediction = r)
@@ -36,9 +57,9 @@ result <- fpROC::auc_metrics(test_prediction = test_data, prediction = r)
 
 ## Acknowledgments
 
-CONACYT Ciencia de Frontera CF-2023-I-1156. Laboratorio Nacional de 
-Biología del Cambio Climático, SECIHTI, México. To PAPIIT-UNAM IA202824 and 
-PAPIIT-UNAM IA203922.RGC-D thanks the Dirección General de Asuntos del 
-Personal Académico (DGAPA) from the UNAM, and the Secretaría de Ciencia, 
-Humanidades, Tecnología e Innovación for her postdoctoral scholarship.
-
+CONACYT Ciencia de Frontera CF-2023-I-1156. Laboratorio Nacional de
+Biología del Cambio Climático, SECIHTI, México. To PAPIIT-UNAM IA202824
+and PAPIIT-UNAM IA203922.RGC-D thanks the Dirección General de Asuntos
+del Personal Académico (DGAPA) from the UNAM, and the Secretaría de
+Ciencia, Humanidades, Tecnología e Innovación for her postdoctoral
+scholarship.
