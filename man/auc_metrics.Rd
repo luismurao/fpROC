@@ -38,6 +38,8 @@ Computes partial AUC ratios between model predictions and random curves at a spe
 with options for sampling and iterations. Handles both numeric vectors and SpatRaster inputs.
 }
 \details{
+Partial ROC is calculated following Peterson et al.
+(2008; \url{http://dx.doi.org/10.1016/j.ecolmodel.2007.11.008}).
 The function calculates partial AUC ratios by:
 \enumerate{
   \item Validating input types and completeness
@@ -60,4 +62,7 @@ r <- terra::rast(ncol=10, nrow=10)
 values(r) <- rnorm(ncell(r))
 result <- auc_metrics(test_prediction = test_data, prediction = r)
 
+}
+\references{
+Peterson, A.T. et al. (2008) Rethinking receiver operating characteristic analysis applications in ecological niche modeling. Ecol. Modell., 213, 63–72.
 }
