@@ -1,6 +1,6 @@
 <!-- badges: start -->
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![codecov](https://codecov.io/gh/luismurao/fpROC/graph/badge.svg?token=22EZE5M06M)](https://codecov.io/gh/luismurao/fpROC)
+[![codecov](https://codecov.io/gh/luismurao/fpROC/graph/badge.svg?token=22EZE5M06M)](https://app.codecov.io/gh/luismurao/fpROC)
 [![CRAN status](https://www.r-pkg.org/badges/version/fpROC)](https://CRAN.R-project.org/package=fpROC)
 <!-- badges: end -->
 
