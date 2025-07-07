@@ -22,7 +22,7 @@ auc_metrics(
 
 \item{sample_percentage}{Percentage of test data to sample (default = 50)}
 
-\item{iterations}{Number of iterations for random curve generation (default = 500)}
+\item{iterations}{Number of iterations for estimating bootstrap statistics (default = 500)}
 
 \item{compute_full_auc}{Logical. If TRUE, the complete AUC values will be computed}
 }
@@ -60,7 +60,7 @@ result <- fpROC::auc_metrics(test_prediction = test_data, prediction = pred_data
 library(terra)
 r <- terra::rast(ncol=10, nrow=10)
 values(r) <- rnorm(ncell(r))
-result <- auc_metrics(test_prediction = test_data, prediction = r)
+result <- fpROC::auc_metrics(test_prediction = test_data, prediction = r)
 
 }
 \references{
