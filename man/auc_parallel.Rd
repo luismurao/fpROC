@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{auc_parallel}
 \alias{auc_parallel}
-\title{Parallel AUC Calculation with Optimized Memory Usage}
+\title{Parallel AUC and partial AUC calculation with optimized memory usage}
 \usage{
 auc_parallel(
   test_prediction,
@@ -17,7 +17,7 @@ auc_parallel(
 \arguments{
 \item{test_prediction}{Numeric vector of test prediction values}
 
-\item{prediction}{Numeric vector of model predictions (bakground suitability data)}
+\item{prediction}{Numeric vector of model predictions (background suitability data)}
 
 \item{threshold}{Percentage threshold for partial AUC calculation (default = 5.0)}
 
