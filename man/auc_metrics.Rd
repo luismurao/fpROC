@@ -39,7 +39,7 @@ with options for sampling and iterations. Handles both numeric vectors and SpatR
 }
 \details{
 Partial ROC is calculated following Peterson et al.
-(2008; \url{http://dx.doi.org/10.1016/j.ecolmodel.2007.11.008}).
+(2008; \doi{10.1016/j.ecolmodel.2007.11.008}).
 The function calculates partial AUC ratios by:
 \enumerate{
   \item Validating input types and completeness
