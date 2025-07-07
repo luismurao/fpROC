@@ -38,7 +38,7 @@
 #' # With SpatRaster
 #' library(terra)
 #' r <- terra::rast(ncol=10, nrow=10)
-#' values(r) <- rnorm(ncell(r))
+#' values(r) <- rnorm(terra::ncell(r))
 #' result <- fpROC::auc_metrics(test_prediction = test_data, prediction = r)
 #'
 #' @export
