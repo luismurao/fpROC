@@ -12,9 +12,11 @@ status](https://www.r-pkg.org/badges/version/fpROC)](https://CRAN.R-project.org/
 
 # fpROC <a href="https://luismurao.github.io/fpROC/"><img src="man/figures/logo.png" align="right" height="139" /></a>
 
-The package features optimized C++ code for computing partial ROC.
-Parallelization using OpenMP (OMP) was achieved with assistance from the
-DeepSeek AI Assistant (<https://deepseek.com>).
+This package provides optimized C++ code for computing the partial ROC
+test used in niche and species distribution modeling. The implementation
+follows Peterson et al. (2008) <doi:10.1016/j.ecolmodel.2007.11.008>.
+Parallelization via OpenMP was implemented with assistance from the
+DeepSeek AI Assistant (<https://www.deepseek.com/>).
 
 The goal of fpROC is to …
 
@@ -51,7 +53,7 @@ set.seed(999)
 library(terra)
 #> terra 1.8.54
 r <- terra::rast(ncol=10, nrow=10)
-values(r) <- rnorm(ncell(r))
+values(r) <- rnorm(terra::ncell(r))
 result <- fpROC::auc_metrics(test_prediction = test_data, prediction = r)
 ```
 
