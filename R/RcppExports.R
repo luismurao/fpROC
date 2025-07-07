@@ -304,8 +304,8 @@ auc_parallel <- function(test_prediction, prediction, threshold = 5.0, sample_pe
 #' # - mean_complete_auc: 0.85 (good overall discrimination)
 #' # - mean_pauc: 0.15 (absolute partial AUC)
 #' # - mean_pauc_rand: 0.08 (random expectation)
-#' # - mean_auc_ratio: 1.9 (model 90% better than random)
-#' # - prop_ratio_gt1: 0.98 (98% of iterations showed model > random)
+#' # - mean_pAUCratio: 1.9 (model 90% better than random)
+#' # - p_value: 0.98 (98% of iterations showed model > random)
 #'
 #' # Real-world usage with actual AUC function output
 #' \donttest{
