@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{trap_roc}
 \alias{trap_roc}
-\title{Calculate Area Under Curve (AUC) Using Trapezoidal Rule}
+\title{Calculate Area Under Curve (AUC) using trapezoidal rule}
 \usage{
 trap_roc(x, y)
 }
