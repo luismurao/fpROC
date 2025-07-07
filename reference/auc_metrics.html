@@ -71,7 +71,7 @@ with options for sampling and iterations. Handles both numeric vectors and SpatR
 
 
 <dt id="arg-iterations">iterations<a class="anchor" aria-label="anchor" href="#arg-iterations"></a></dt>
-<dd><p>Number of iterations for random curve generation (default = 500)</p></dd>
+<dd><p>Number of iterations for estimating bootstrap statistics (default = 500)</p></dd>
 
 
 <dt id="arg-compute-full-auc">compute_full_auc<a class="anchor" aria-label="anchor" href="#arg-compute-full-auc"></a></dt>
@@ -110,7 +110,7 @@ The function calculates partial AUC ratios by:</p><ol><li><p>Validating input ty
 <span class="r-msg co"><span class="r-pr">#&gt;</span> terra 1.8.54</span>
 <span class="r-in"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span>ncol<span class="op">=</span><span class="fl">10</span>, nrow<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">ncell</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">auc_metrics</span><span class="op">(</span>test_prediction <span class="op">=</span> <span class="va">test_data</span>, prediction <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">fpROC</span><span class="fu">::</span><span class="fu">auc_metrics</span><span class="op">(</span>test_prediction <span class="op">=</span> <span class="va">test_data</span>, prediction <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
