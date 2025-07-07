@@ -52,7 +52,7 @@
 #' @seealso \code{\link{auc_parallel}} for the main AUC computation function
 NULL
 
-#' Compute AUC Metrics for Single Bootstrap Iteration
+#' Compute AUC Metrics for single bootstrap iteration
 #'
 #' @description Calculates partial and complete AUC metrics for a single bootstrap sample.
 #' This function is the computational core for bootstrap AUC estimation.
@@ -102,7 +102,7 @@ NULL
 #'          \code{\link{trap_roc}} for AUC calculation method
 NULL
 
-#' Execute Parallel Bootstrap Iterations for AUC Calculation
+#' Execute parallel bootstrap iterations for AUC Calculation
 #'
 #' @description Coordinates the parallel execution of multiple bootstrap iterations for AUC metrics computation.
 #' This function serves as the parallel driver for the main AUC calculation workflow.
@@ -145,7 +145,7 @@ NULL
 #'
 NULL
 
-#' Calculate Area Under Curve (AUC) Using Trapezoidal Rule
+#' Calculate Area Under Curve (AUC) using trapezoidal rule
 #'
 #' @description Computes the area under a curve using the trapezoidal rule of numerical integration.
 #'
@@ -175,12 +175,12 @@ trap_roc <- function(x, y) {
     .Call('_fpROC_trap_roc', PACKAGE = 'fpROC', x, y)
 }
 
-#' Parallel AUC Calculation with Optimized Memory Usage
+#' Parallel AUC and partial AUC calculation with optimized memory usage
 #'
 #' @description Computes bootstrap estimates of partial and complete AUC using parallel processing and optimized binning.
 #'
 #' @param test_prediction Numeric vector of test prediction values
-#' @param prediction Numeric vector of model predictions (bakground suitability data)
+#' @param prediction Numeric vector of model predictions (background suitability data)
 #' @param threshold Percentage threshold for partial AUC calculation (default = 5.0)
 #' @param sample_percentage Percentage of test data to sample in each iteration (default = 50.0)
 #' @param iterations Number of bootstrap iterations (default = 500)
@@ -252,7 +252,8 @@ auc_parallel <- function(test_prediction, prediction, threshold = 5.0, sample_pe
 #' Summarize Bootstrap AUC Results
 #'
 #' Computes aggregated statistics from bootstrap AUC iterations. This function processes
-#' the raw output of \code{\link{auc_parallel}} to produce meaningful summary metrics.
+#' the raw output of \code{\link{auc_parallel}} to produce meaningful summary metrics of the
+#' partial ROc test.
 #'
 #' @param auc_results Numeric matrix output from \code{\link{auc_parallel}}
 #'        (dimensions: n_iterations x 4)
@@ -272,7 +273,8 @@ auc_parallel <- function(test_prediction, prediction, threshold = 5.0, sample_pe
 #' This function:
 #' 1. Filters iterations with non-finite ratio values (handles bootstrap failures)
 #' 2. Computes means for each AUC metric across valid iterations
-#' 3. Calculates proportion of iterations where model outperforms random (ratio > 1)
+#' 3. Calculates proportion of iterations where model outperforms random (ratio > 1).
+#'    This way of computing the the p-value of the test.
 #'
 #' Special handling:
 #' - Returns all NAs if no valid iterations exist
@@ -321,11 +323,11 @@ auc_parallel <- function(test_prediction, prediction, threshold = 5.0, sample_pe
 #'
 #' # Print summary statistics
 #' colnames(summary) <- c("mean_complete_auc", "mean_pauc",
-#'                       "mean_pauc_rand", "mean_ratio", "prop_ratio_gt1")
+#'                       "mean_pauc_rand", "mean_pAUCratio", "p_value")
 #' print(summary)
 #'
 #' # Expected output structure:
-#' #      mean_complete_auc mean_pauc mean_pauc_rand mean_ratio prop_ratio_gt1
+#' #      mean_complete_auc mean_pauc mean_pauc_rand mean_pAUCratio    p_value
 #' # [1,]               NA     0.152          0.083       1.83           0.94
 #' }
 #'
