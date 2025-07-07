@@ -4,11 +4,11 @@
 \name{fpROC-package}
 \alias{fpROC}
 \alias{fpROC-package}
-\title{fpROC: Fast partial ROC test}
+\title{fpROC: Fast Partial ROC Test for Ecological Niche Modeling}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-This package provides optimized C++ code for computing the partial ROC test used in niche and species distribution modeling. The implementation follows Peterson et al. (2008) \doi{10.1016/j.ecolmodel.2007.11.008}. Parallelization via OpenMP was implemented with assistance from the DeepSeek AI Assistant (https://www.deepseek.com/).
+Provides optimized C++ code for computing the partial ROC test used in niche and species distribution modeling. The implementation follows Peterson et al. (2008) \doi{10.1016/j.ecolmodel.2007.11.008}. Parallelization via OpenMP was implemented with assistance from the DeepSeek AI Assistant (\url{https://www.deepseek.com/}).
 }
 \seealso{
 Useful links:
