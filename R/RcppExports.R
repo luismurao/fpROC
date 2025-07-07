@@ -253,7 +253,7 @@ auc_parallel <- function(test_prediction, prediction, threshold = 5.0, sample_pe
 #'
 #' Computes aggregated statistics from bootstrap AUC iterations. This function processes
 #' the raw output of \code{\link{auc_parallel}} to produce meaningful summary metrics of the
-#' partial ROc test.
+#' partial ROC test.
 #'
 #' @param auc_results Numeric matrix output from \code{\link{auc_parallel}}
 #'        (dimensions: n_iterations x 4)
