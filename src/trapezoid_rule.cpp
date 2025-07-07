@@ -524,7 +524,7 @@ arma::mat auc_parallel(const arma::vec& test_prediction,
 //'
 //' Computes aggregated statistics from bootstrap AUC iterations. This function processes
 //' the raw output of \code{\link{auc_parallel}} to produce meaningful summary metrics of the
-//' partial ROc test.
+//' partial ROC test.
 //'
 //' @param auc_results Numeric matrix output from \code{\link{auc_parallel}}
 //'        (dimensions: n_iterations x 4)
