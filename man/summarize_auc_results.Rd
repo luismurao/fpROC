@@ -25,13 +25,15 @@ A numeric matrix with 1 row and 5 columns containing:
 }
 \description{
 Computes aggregated statistics from bootstrap AUC iterations. This function processes
-the raw output of \code{\link{auc_parallel}} to produce meaningful summary metrics.
+the raw output of \code{\link{auc_parallel}} to produce meaningful summary metrics of the
+partial ROc test.
 }
 \details{
 This function:
 1. Filters iterations with non-finite ratio values (handles bootstrap failures)
 2. Computes means for each AUC metric across valid iterations
-3. Calculates proportion of iterations where model outperforms random (ratio > 1)
+3. Calculates proportion of iterations where model outperforms random (ratio > 1).
+   This way of computing the the p-value of the test.
 
 Special handling:
 - Returns all NAs if no valid iterations exist
@@ -82,11 +84,11 @@ summary <- summarize_auc_results(auc_output, has_complete_auc = FALSE)
 
 # Print summary statistics
 colnames(summary) <- c("mean_complete_auc", "mean_pauc",
-                      "mean_pauc_rand", "mean_ratio", "prop_ratio_gt1")
+                      "mean_pauc_rand", "mean_pAUCratio", "p_value")
 print(summary)
 
 # Expected output structure:
-#      mean_complete_auc mean_pauc mean_pauc_rand mean_ratio prop_ratio_gt1
+#      mean_complete_auc mean_pauc mean_pauc_rand mean_pAUCratio    p_value
 # [1,]               NA     0.152          0.083       1.83           0.94
 }
 
