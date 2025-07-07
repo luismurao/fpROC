@@ -1,7 +1,7 @@
 [
     {
         "file": "/Users/luis.osorio/Dropbox/fpROC_test/fpROC/src/trapezoid_rule.cpp",
-        "file_last_write": 1750961990.0,
+        "file_last_write": 1751484707.0,
         "definitions": [
             {
                 "usr": "c:@F@trap_roc#&1$@N@arma@S@Col>#d#S0_#",
@@ -14,22 +14,22 @@
                 "hidden": false
             },
             {
-                "usr": "c:@F@bigclass_mat_opt#&1$@N@arma@S@Col>#d#S0_#I#",
+                "usr": "c:@F@bigclass_matrix#&1$@N@arma@S@Col>#d#S0_#I#",
                 "kind": 6,
                 "parent_name": "",
-                "name": "bigclass_mat_opt(const arma::vec &, const arma::vec &, const int)",
+                "name": "bigclass_matrix(const arma::vec &, const arma::vec &, const int)",
                 "file": "/Users/luis.osorio/Dropbox/fpROC_test/fpROC/src/trapezoid_rule.cpp",
-                "line": 103,
+                "line": 104,
                 "column": 11,
                 "hidden": false
             },
             {
-                "usr": "c:@F@calc_aucDF_arma_opt#&1$@N@arma@S@Mat>#d#&1$@N@arma@S@Col>#d#S2_#I#d#b#",
+                "usr": "c:@F@calc_aucDF_arma#&1$@N@arma@S@Mat>#d#&1$@N@arma@S@Col>#d#S2_#I#d#b#",
                 "kind": 6,
                 "parent_name": "",
-                "name": "calc_aucDF_arma_opt(const arma::mat &, const arma::vec &, const arma::vec &, int, double, bool)",
+                "name": "calc_aucDF_arma(const arma::mat &, const arma::vec &, const arma::vec &, int, double, bool)",
                 "file": "/Users/luis.osorio/Dropbox/fpROC_test/fpROC/src/trapezoid_rule.cpp",
-                "line": 221,
+                "line": 220,
                 "column": 11,
                 "hidden": false
             },
@@ -39,17 +39,17 @@
                 "parent_name": "",
                 "name": "iterate_aucDF_arma_opt(const arma::mat &, const arma::vec &, const arma::vec &, int, double, int, bool)",
                 "file": "/Users/luis.osorio/Dropbox/fpROC_test/fpROC/src/trapezoid_rule.cpp",
-                "line": 333,
+                "line": 332,
                 "column": 11,
                 "hidden": false
             },
             {
-                "usr": "c:@F@auc_par_arma_opt#&1$@N@arma@S@Col>#d#S0_#d#d#I#b#I#",
+                "usr": "c:@F@auc_parallel#&1$@N@arma@S@Col>#d#S0_#d#d#I#b#I#",
                 "kind": 6,
                 "parent_name": "",
-                "name": "auc_par_arma_opt(const arma::vec &, const arma::vec &, double, double, int, bool, int)",
+                "name": "auc_parallel(const arma::vec &, const arma::vec &, double, double, int, bool, int)",
                 "file": "/Users/luis.osorio/Dropbox/fpROC_test/fpROC/src/trapezoid_rule.cpp",
-                "line": 428,
+                "line": 426,
                 "column": 11,
                 "hidden": false
             },
@@ -59,7 +59,7 @@
                 "parent_name": "",
                 "name": "summarize_auc_results(const arma::mat &, bool)",
                 "file": "/Users/luis.osorio/Dropbox/fpROC_test/fpROC/src/trapezoid_rule.cpp",
-                "line": 608,
+                "line": 606,
                 "column": 11,
                 "hidden": false
             }
