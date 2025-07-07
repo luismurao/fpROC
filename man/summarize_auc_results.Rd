@@ -26,7 +26,7 @@ A numeric matrix with 1 row and 5 columns containing:
 \description{
 Computes aggregated statistics from bootstrap AUC iterations. This function processes
 the raw output of \code{\link{auc_parallel}} to produce meaningful summary metrics of the
-partial ROc test.
+partial ROC test.
 }
 \details{
 This function:
