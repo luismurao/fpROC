@@ -7,7 +7,7 @@
 #' @param prediction Numeric vector or SpatRaster object containing prediction values
 #' @param threshold Percentage threshold for partial AUC calculation (default = 5)
 #' @param sample_percentage Percentage of test data to sample (default = 50)
-#' @param iterations Number of iterations for random curve generation (default = 500)
+#' @param iterations Number of iterations for estimating bootstrap statistics (default = 500)
 #' @param compute_full_auc Logical. If TRUE, the complete AUC values will be computed
 #'
 #' @return A list containing:
@@ -39,7 +39,7 @@
 #' library(terra)
 #' r <- terra::rast(ncol=10, nrow=10)
 #' values(r) <- rnorm(ncell(r))
-#' result <- auc_metrics(test_prediction = test_data, prediction = r)
+#' result <- fpROC::auc_metrics(test_prediction = test_data, prediction = r)
 #'
 #' @export
 #' @import RcppArmadillo
