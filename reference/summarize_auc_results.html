@@ -112,8 +112,8 @@ bootstrap iterations (affects first summary column)</p></dd>
 <span class="r-in"><span><span class="co"># - mean_complete_auc: 0.85 (good overall discrimination)</span></span></span>
 <span class="r-in"><span><span class="co"># - mean_pauc: 0.15 (absolute partial AUC)</span></span></span>
 <span class="r-in"><span><span class="co"># - mean_pauc_rand: 0.08 (random expectation)</span></span></span>
-<span class="r-in"><span><span class="co"># - mean_auc_ratio: 1.9 (model 90% better than random)</span></span></span>
-<span class="r-in"><span><span class="co"># - prop_ratio_gt1: 0.98 (98% of iterations showed model &gt; random)</span></span></span>
+<span class="r-in"><span><span class="co"># - mean_pAUCratio: 1.9 (model 90% better than random)</span></span></span>
+<span class="r-in"><span><span class="co"># - p_value: 0.98 (98% of iterations showed model &gt; random)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Real-world usage with actual AUC function output</span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
@@ -134,7 +134,7 @@ bootstrap iterations (affects first summary column)</p></dd>
 <span class="r-in"><span>                      <span class="st">"mean_pauc_rand"</span>, <span class="st">"mean_pAUCratio"</span>, <span class="st">"p_value"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">summary</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mean_complete_auc  mean_pauc mean_pauc_rand mean_pAUCratio p_value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]                NA 0.05115536     0.05093812       1.003816    0.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]                NA 0.05135342     0.05114414       1.003548    0.27</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Expected output structure:</span></span></span>
 <span class="r-in"><span><span class="co">#      mean_complete_auc mean_pauc mean_pauc_rand mean_pAUCratio    p_value</span></span></span>
