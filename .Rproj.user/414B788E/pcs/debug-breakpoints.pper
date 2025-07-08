@@ -1,5 +1,21 @@
 {
     "debugBreakpointsState": {
-        "breakpoints": []
+        "breakpoints": [
+            {
+                "id": 0,
+                "path": "~/Dropbox/fpROC_test/fpROC/R/auc_metrics.R",
+                "line_number": 52,
+                "function_steps": "2",
+                "function_name": "auc_metrics",
+                "state": 1,
+                "editor_state": 0,
+                "editor_line_number": 49,
+                "is_pending_debug_completion": false,
+                "needs_updated_steps": false,
+                "type": 0,
+                "is_package_breakpoint": true,
+                "package_name": "fpROC"
+            }
+        ]
     }
 }
