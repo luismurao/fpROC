@@ -131,11 +131,11 @@ Sensitivity &gt; 1 - (threshold/100)</p>
 <span class="r-in"><span><span class="co"># View first 5 iterations</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">results</span>, <span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]     [,2]      [,3]      [,4]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.511464 0.056262 0.0563180 0.9990056</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.481664 0.051450 0.0515955 0.9971800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.503622 0.039310 0.0392000 1.0028061</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.500918 0.063478 0.0628875 1.0093898</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.521150 0.063260 0.0628875 1.0059233</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.484496 0.063468 0.0628875 1.0092308</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.522732 0.035312 0.0353520 0.9988685</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.488304 0.062234 0.0619520 1.0045519</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.497354 0.056516 0.0563180 1.0035157</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.508788 0.051704 0.0515955 1.0021029</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Summarize results (assume complete AUC was not computed)</span></span></span>
 <span class="r-in"><span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="summarize_auc_results.html">summarize_auc_results</a></span><span class="op">(</span><span class="va">results</span>, has_complete_auc <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
