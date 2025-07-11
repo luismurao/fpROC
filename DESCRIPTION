@@ -1,6 +1,6 @@
 Package: fpROC
 Type: Package
-Title: Fast Partial ROC Test for Ecological Niche Modeling
+Title: Fast Partial Receiver Operating Characteristic (ROC) Test for Ecological Niche Modeling
 Version: 0.1.0
 Authors@R: c(
               person("Luis", "Osorio-Olvera", 
@@ -19,10 +19,11 @@ Authors@R: c(
                       role = "ctb", comment = c(ORCID = "0000-0003-4861-8064"))
   )
 Maintainer: Luis Osorio-Olvera <luismurao@gmail.com>
-Description: Provides optimized C++ code for computing the partial ROC test used in niche and species distribution modeling. The implementation follows Peterson et al. (2008) <doi:10.1016/j.ecolmodel.2007.11.008>. Parallelization via OpenMP was implemented with assistance from the DeepSeek AI Assistant (<https://www.deepseek.com/>).
+Description: Provides optimized 'C++' code for computing the partial Receiver Operating Characteristic (ROC) test used in niche and species distribution modeling. The implementation follows Peterson et al. (2008) <doi:10.1016/j.ecolmodel.2007.11.008>. Parallelization via 'OpenMP' was implemented with assistance from the 'DeepSeek' Artificial Intelligence Assistant (<https://www.deepseek.com/>).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+NeedsCompilation: yes
 SystemRequirements: GNU make, OpenMP, TBB
 URL: https://luismurao.github.io/fpROC/
 BugReports: https://github.com/luismurao/fpROC/issues

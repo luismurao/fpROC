@@ -16,3 +16,10 @@
 0 errors | 0 warnings | 1 note
 
 * This is a new release.
+
+## Resubmission
+
+1) Description: 
+    - Added single quotes in software and API names in title and description.
+    - Explained e acronyms in the description text -> Receiver Operating Characteristic (ROC)
+    
