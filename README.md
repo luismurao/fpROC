@@ -12,13 +12,12 @@ status](https://www.r-pkg.org/badges/version/fpROC)](https://CRAN.R-project.org/
 
 # fpROC <a href="https://luismurao.github.io/fpROC/"><img src="man/figures/logo.png" align="right" height="139" /></a>
 
-Provides optimized C++ code for computing the partial ROC test used in
-niche and species distribution modeling. The implementation follows
-Peterson et al. (2008) <doi:10.1016/j.ecolmodel.2007.11.008>.
-Parallelization via OpenMP was implemented with assistance from the
-DeepSeek AI Assistant (<https://www.deepseek.com/>).
-
-The goal of fpROC is to …
+Provides optimized ‘C++’ code for computing the partial Receiver
+Operating Characteristic (ROC) test used in niche and species
+distribution modeling. The implementation follows Peterson et al. (2008)
+<doi:10.1016/j.ecolmodel.2007.11.008>. Parallelization via ‘OpenMP’ was
+implemented with assistance from the ‘DeepSeek’ Artificial Intelligence
+Assistant (<https://www.deepseek.com/>).
 
 ## Installation
 
