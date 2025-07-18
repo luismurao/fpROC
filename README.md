@@ -8,6 +8,8 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 [![codecov](https://codecov.io/gh/luismurao/fpROC/graph/badge.svg?token=22EZE5M06M)](https://app.codecov.io/gh/luismurao/fpROC)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/fpROC)](https://CRAN.R-project.org/package=fpROC)
+[![rstudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/fpROC)](https://github.com/r-hub/cranlogs.app)
 <!-- badges: end -->
 
 # fpROC <a href="https://luismurao.github.io/fpROC/"><img src="man/figures/logo.png" align="right" height="139" /></a>
