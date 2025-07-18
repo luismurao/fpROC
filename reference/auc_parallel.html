@@ -130,12 +130,12 @@ Sensitivity &gt; 1 - (threshold/100)</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># View first 5 iterations</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">results</span>, <span class="fl">5</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]     [,2]      [,3]     [,4]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.503518 0.044142 0.0439875 1.003512</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.499698 0.063074 0.0628875 1.002966</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.494306 0.033284 0.0334220 0.995871</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.518426 0.059590 0.0591395 1.007618</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.507974 0.039284 0.0392000 1.002143</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]     [,2]      [,3]      [,4]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.485038 0.035314 0.0353520 0.9989251</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.506256 0.039196 0.0392000 0.9998980</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.515182 0.069904 0.0694080 1.0071462</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.520932 0.051704 0.0515955 1.0021029</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.496894 0.035196 0.0353520 0.9955872</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Summarize results (assume complete AUC was not computed)</span></span></span>
 <span class="r-in"><span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="summarize_auc_results.html">summarize_auc_results</a></span><span class="op">(</span><span class="va">results</span>, has_complete_auc <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
